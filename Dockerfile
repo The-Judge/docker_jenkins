@@ -12,12 +12,14 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/so
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get --no-install-recommends install -q -y openjdk-7-jre-headless && \
-    apt-get install -q -y git && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -q -y git
 
 # Install Docker
 RUN apt-get install -y docker.io
+
+# Cleanup APT
+apt-get clean && \
+rm -rf /var/lib/apt/lists/*
 
 ADD http://mirrors.jenkins-ci.org/war/${JENKINS_VERSION}/jenkins.war /opt/jenkins.war
 ADD init.sh /init
