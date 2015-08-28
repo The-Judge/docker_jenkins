@@ -3,7 +3,7 @@ FROM debian:jessie
 MAINTAINER Marc Richter "mail@marc-richter.info"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV JENKINS_VERSION latest
+ENV JENKINS_VERSION 1.626
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
