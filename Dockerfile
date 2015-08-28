@@ -18,8 +18,8 @@ RUN apt-get update && \
 RUN apt-get install -y docker.io
 
 # Cleanup APT
-apt-get clean && \
-rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ADD http://mirrors.jenkins-ci.org/war/${JENKINS_VERSION}/jenkins.war /opt/jenkins.war
 ADD init.sh /init
