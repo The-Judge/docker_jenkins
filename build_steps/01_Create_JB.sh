@@ -1,7 +1,7 @@
 #!/bin/bash -x
 # Load constants
-if [ -e $(dirname $(readlink -f $0)/constats) ]; then
-    source $(dirname $(readlink -f $0)/constants)
+if [ -e $(dirname $(readlink -f $0))/constats ]; then
+    source $(dirname $(readlink -f $0))/constants
     echo "Found"
 fi
 
