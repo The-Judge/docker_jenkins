@@ -4,7 +4,7 @@ if [ -x /user/init ]; then
     /user/init
 fi
 
-# Start Docker
-/usr/bin/docker daemon -H fd://
+## Start Docker
+#/usr/bin/docker daemon -H fd://
 # Start jenkins
 java -jar /opt/jenkins.war

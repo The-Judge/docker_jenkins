@@ -12,10 +12,10 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/so
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get --no-install-recommends install -q -y openjdk-7-jre-headless && \
-    apt-get install -q -y  curl git python
+    apt-get install -q -y curl git python python-requests
 
-# Install Docker
-RUN apt-get install -y docker.io
+## Install Docker
+#RUN apt-get install -y docker.io
 
 # Cleanup APT
 RUN apt-get clean && \
