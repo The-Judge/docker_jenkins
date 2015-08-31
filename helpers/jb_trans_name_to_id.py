@@ -22,6 +22,6 @@ r = requests.get(base_url)
 json = json.loads(r.text)
 
 # Find id matching name
-for id in json['result']:
-    if sys.argv[-1] in json['result'][id]['name']:
-        print id
+for jbid in json['result']:
+    if sys.argv[-1] in json['result'][jbid]['name']:
+        print jbid
