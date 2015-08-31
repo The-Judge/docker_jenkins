@@ -8,7 +8,7 @@ fi
 #result="$(curl -d name=${BUILD_ID} -d planid=20 -d distribution=debian_jessie_64bit -d use_sshkey ${base_url})"
 result="$(curl -d name=dskdjfndj -d planid=20 -d distribution=debian_jessie_64bit -d use_sshkey ${base_url})"
 echo ${base_url}
-if [ "${result}" =~ .*status.*CREATING.* ]; then
+if [[ "${result}" =~ .*status.*CREATING.* ]]; then
     echo "Success"
 fi
 echo "${result}"
