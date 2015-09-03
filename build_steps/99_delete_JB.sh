@@ -1,5 +1,5 @@
 #!/bin/bash -x
-# Create JB
+# Delete JB
 
 # Load constants
 # TODO: Hier muss noch ein geeigneter Ablageort für constants und die Helper-Scripte bestimmt werden
@@ -11,10 +11,6 @@ else
     exit 1
 fi
 
-# Create JB
-result="$(curl -d name=${BUILD_ID} -d planid=20 -d distribution=debian_jessie_64bit -d use_sshkey ${base_url})"
-if [ -z "echo ${result} | egrep ',"status":"CREATING"'" ]; then
-    echo "Couldn't be started properly. Result was:"
-    echo "${result}"
-    exit 1
-fi
+# Delete JB
+result="$(curl -X DELETE ${base_url}/$(python /helpers/py_jb_trans_name_to_id.py))"
+echo "${result}"
