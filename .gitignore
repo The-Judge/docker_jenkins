@@ -1,3 +1,4 @@
 build_steps/constants
 .idea/
-
+Vagrantfile
+box_scripts/

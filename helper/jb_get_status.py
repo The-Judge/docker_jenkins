@@ -5,8 +5,8 @@ import json
 
 '''
 This script takes two arguments: API-TOKEN NAME
-It queries the JiffyBox - API for a list of all existing JiffyBoxes using the API-Token provided. It returns the ID of
-the JiffyBox with the given name.
+It queries the JiffyBox - API for a list of all existing JiffyBoxes using the API-Token provided. It returns the status
+of the JiffyBox with the given name.
 '''
 
 # Set constants
@@ -22,6 +22,6 @@ r = requests.get(base_url)
 json = json.loads(r.text)
 
 # Find id matching name
-for id in json['result']:
-    if sys.argv[-1] in json['result'][id]['name']:
-        print id
+for jbid in json['result']:
+    if sys.argv[-1] in json['result'][jbid]['name']:
+        print json['result'][jbid]['name']

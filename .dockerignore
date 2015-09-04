@@ -1,2 +1,4 @@
 helpers/
 build_steps/constants
+box_scripts/
+Vagrantfile
