@@ -11,6 +11,7 @@ load_const
 WAIT=300
 
 wait_for_status ${WAIT} RUNNING
+wait_for_running ${WAIT} true
 
 if [ $? -ne 0 ]; then
     echo "Build-Umgebung konnte nicht sauber gestartet werden."

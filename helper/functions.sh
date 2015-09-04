@@ -22,6 +22,7 @@ function get_id {
 # get_state FELD
 # FELD kann entweder "status" oder "running" sein
 function get_state {
+    load_const
     ID=$(get_id)
     STATE="$(python /helper/jb_get_status.py ${token} $(get_id) $1)"
     echo ${STATE}
@@ -30,7 +31,6 @@ function get_state {
 # Wartet eine gewisse Zeit ($1) ob bis dahin ein Status ($2) eintritt
 # und gibt einen Status von 0 oder 1 zurück
 function wait_for_status {
-    load_const
     WAIT=$1
     STATUS=$2
     while [ ${WAIT} -gt 0 ]; do
@@ -46,6 +46,24 @@ function wait_for_status {
     fi
 done
 }
+
+# Wartet eine gewisse Zeit ($1) ob bis dahin ein Running-Status ($2) eintritt
+# und gibt einen Status von 0 oder 1 zurück
+function wait_for_running {
+    WAIT=$1
+    STATUS=$2
+    while [ ${WAIT} -gt 0 ]; do
+    if [ "$(get_state status)" == "${STATUS}" ]; then
+        break
+    fi
+    sleep 1
+    ((WAIT--))
+    if [ ${WAIT} -gt 0 ]; then
+        return 0
+    else
+        return 1
+    fi
+done
 
 # Löschen der Build-Umgebung
 function kill_box {
