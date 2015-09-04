@@ -34,17 +34,17 @@ function wait_for_status {
     WAIT=$1
     STATUS=$2
     while [ ${WAIT} -gt 0 ]; do
-    if [ "$(get_state status)" == "${STATUS}" ]; then
-        break
-    fi
-    sleep 1
-    ((WAIT--))
-    if [ ${WAIT} -gt 0 ]; then
-        return 0
-    else
-        return 1
-    fi
-done
+        if [ "$(get_state status)" == "${STATUS}" ]; then
+            break
+        fi
+        sleep 1
+        ((WAIT--))
+        if [ ${WAIT} -gt 0 ]; then
+            return 0
+        else
+            return 1
+        fi
+    done
 }
 
 # Wartet eine gewisse Zeit ($1) ob bis dahin ein Running-Status ($2) eintritt
@@ -53,17 +53,18 @@ function wait_for_running {
     WAIT=$1
     STATUS=$2
     while [ ${WAIT} -gt 0 ]; do
-    if [ "$(get_state status)" == "${STATUS}" ]; then
-        break
-    fi
-    sleep 1
-    ((WAIT--))
-    if [ ${WAIT} -gt 0 ]; then
-        return 0
-    else
-        return 1
-    fi
-done
+        if [ "$(get_state status)" == "${STATUS}" ]; then
+            break
+        fi
+        sleep 1
+        ((WAIT--))
+        if [ ${WAIT} -gt 0 ]; then
+            return 0
+        else
+            return 1
+        fi
+    done
+}
 
 # Löschen der Build-Umgebung
 function kill_box {
