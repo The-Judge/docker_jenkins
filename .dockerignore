@@ -1,4 +1,3 @@
-helpers/
-build_steps/constants
+helper/
 box_scripts/
 Vagrantfile

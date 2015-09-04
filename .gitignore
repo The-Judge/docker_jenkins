@@ -1,4 +1,4 @@
-build_steps/constants
+helper/constants
 .idea/
 Vagrantfile
 box_scripts/

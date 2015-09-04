@@ -1,23 +1,21 @@
 #!/bin/bash -x
-# Create JB
+# Erzeugen der Build-Umgebung
 
-# Load constants
-CONSTANTS_FILE="/helper/constants"
-if [ -e "${CONSTANTS_FILE}" ]; then
-    source "${CONSTANTS_FILE}"
-else
-    echo ""${CONSTANTS_FILE}" not found."
-    exit 1
-fi
+# Laden der Funktionen
+source /helper/functions.sh
 
-# Create JB
-result="$(curl -d name=${BUILD_ID} -d planid=20 -d distribution=debian_jessie_64bit -d use_sshkey ${base_url})"
+# Laden der Konstanten
+load_const
+
+# Erzeugen der Build-Umgebung
+result="$(curl -s -S -d name=${BUILD_ID} -d planid=20 -d distribution=debian_jessie_64bit -d use_sshkey ${base_url})"
+
+# Fehlerbehandlung im Fehlerfall
 if [ -z "echo ${result} | egrep ',"status":"CREATING"'" ]; then
-    echo "Couldn't be started properly. Result was:"
+    echo "Konnte nicht sauber starten. Der Rückgabewert war:"
     echo "${result}"
-    # Try to delete the JB
-    echo "Trying to delete failed JB..."
-    # Bringe die ID der JB in Erfahrung
-    curl -X DELETE ${base_url}/$(python /helper/jb_trans_name_to_id.py ${token} ${BUILD_ID})
+    echo ""
+    sleep 10
+    kill_box
     exit 1
 fi

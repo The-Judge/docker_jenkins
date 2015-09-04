@@ -1,20 +1,20 @@
 #!/bin/bash
 # Warte bis die JB erreichbar ist
 
-# Load constants
-CONSTANTS_FILE="/helper/constants"
-if [ -e "${CONSTANTS_FILE}" ]; then
-    source "${CONSTANTS_FILE}"
-else
-    echo ""${CONSTANTS_FILE}" not found."
-    exit 1
-fi
+# Laden der Funktionen
+source /helper/functions.sh
+
+# Laden der Konstanten
+load_const
 
 # Maximale Wartezeit, die die JB hochfahren darf in Sekunden
 WAIT=300
 
-# Bringe die ID der JB in Erfahrung
-JBID="$(python /helper/jb_translate_name_to_id.py ${token} ${BUILD_ID})"
+wait_for_status ${WAIT} RUNNING
 
-# Lese den status aus
-#TODO: TBC
+if [ $? -ne 0 ]; then
+    echo "Build-Umgebung konnte nicht sauber gestartet werden."
+    exit 1
+else
+    echo "Build-Umgebung wurde gestartet."
+fi

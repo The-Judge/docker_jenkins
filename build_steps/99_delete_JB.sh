@@ -1,14 +1,10 @@
 #!/bin/bash -x
-# Delete JB
+# Löschen der Build-Umgebung
 
-# Load constants
-CONSTANTS_FILE="/helper/constants"
-if [ -e "${CONSTANTS_FILE}" ]; then
-    source "${CONSTANTS_FILE}"
-else
-    echo ""${CONSTANTS_FILE}" not found."
-    exit 1
-fi
+# Laden der Funktionen
+source /helper/functions.sh
 
-# Delete JB
-curl -X DELETE ${base_url}/$(python /helper/jb_trans_name_to_id.py ${token} ${BUILD_ID})
+# Laden der Konstanten
+load_const
+
+kill_box
