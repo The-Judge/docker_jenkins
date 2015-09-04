@@ -1,4 +1,0 @@
-export token="UfDWYYZDATueM2e3u7PsDPfRn0bhc2QX"
-export base_url="https://api.jiffybox.de/${token}/v1.0/jiffyBoxes"
-# Wird verwendet um bsteimmten Prozessen ein wenig Zeit zu geben wie z.B. beim starten einer Build-Umgebung
-export WAIT=180
